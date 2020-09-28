@@ -10,6 +10,24 @@
   </head>
 
   <body>
+
+      <header class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+          <nav class="nav navbar-nav navbar-left">
+            <%= link_to image_tag("mercilogo4.jpg"), "/" %>
+          </nav>
+       <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+                <li><%= link_to "About", user_path(current_user.id), class: "glyphicon glyphicon-home" %></li>
+                <li><%= link_to "商品一覧", users_path , class:"glyphicon glyphicon-user users" %></li>
+                <li><%= link_to "新規登録", books_path, class:"glyphicon glyphicon-book books" %></li>
+                <li><%= link_to "ログイン", destroy_user_session_path, class:"glyphicon glyphicon-log-out logout", method: :delete %></li>
+                 <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
     <%= yield %>
   </body>
 </html>

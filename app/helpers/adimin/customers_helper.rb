@@ -1,0 +1,2 @@
+module Adimin::CustomersHelper
+end
