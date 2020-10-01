@@ -1,33 +1,54 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ja">
   <head>
-    <title>Naganocake</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <title>DwcRailsAppTemplate</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-
+ <body>
+    <div class="container">
       <header class="navbar navbar-fixed-top navbar-inverse">
-        <div class="container">
-          <nav class="nav navbar-nav navbar-left">
-            <%= link_to image_tag("mercilogo4.jpg"), "/" %>
-          </nav>
-       <nav>
-        <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-                <li><%= link_to "About", user_path(current_user.id), class: "glyphicon glyphicon-home" %></li>
-                <li><%= link_to "商品一覧", users_path , class:"glyphicon glyphicon-user users" %></li>
-                <li><%= link_to "新規登録", books_path, class:"glyphicon glyphicon-book books" %></li>
-                <li><%= link_to "ログイン", destroy_user_session_path, class:"glyphicon glyphicon-log-out logout", method: :delete %></li>
-                 <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>
-    <%= yield %>
+            <nav class="nav navbar-nav navbar-left">
+                <%= link_to image_tag("mercilogo4.jpg",:size => "150x70"), home_top_path %>
+            </nav>
+              <nav>
+                <ul class="navbar-nav navbar-right",style="display: flex">
+                  <% if customer_signed_in? %>
+                        <p>ようこそ、XXXさん！</p>
+                        <li><%= link_to "マイページ",home_about_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "商品一覧", customers_items_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "カート", home_about_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "ログアウト", home_about_path, class: "btn btn-light" %></li>
+                      <% elsif admin_signed_in? %>
+                        <li><%= link_to "商品一覧", home_about_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "会員一覧", home_about_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "注文履歴一覧", home_about_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "ジャンル一覧", home_about_path, class: "btn btn-light", method: :delete %></li>
+                        <li><%= link_to "ログアウト", home_about_path, class: "btn btn-light" %></li>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                    <% else %>
+                          <li><%= link_to "About", home_about_path, class: "btn btn-light" %></li>
+                          <li><%= link_to "商品一覧",customers_items_path, class: "btn btn-light"%></li>
+                          <li><%= link_to "新規登録", home_about_path, class: "btn btn-light" %></li>
+                          <li><%= link_to "ログイン", home_about_path, class: "btn btn-success " %></li>
+                  <% end %>
+                </ul>
+              </nav>
+          </header>
+
+       <%= yield %>
+    </div>
+          <footer>
+            <div class="bottom">
+            </div>
+          </footer>
   </body>
 </html>

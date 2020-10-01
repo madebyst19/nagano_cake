@@ -1,0 +1,25 @@
+<div claas="row">
+        <div class="shoppingcart">ショッピングカート</div>
+        <div>
+            <%= link_to "カートを空にする",customers_items_path,class:"btn btn-danger"%>
+        </div>
+        <table border="2">
+            <tr>
+            <%#あとでEACh文にする%>
+            <th>商品名</th>  <th>単価（税込）</th>  <th>数量</th>  <th>小計</th>  <th><span></span></span></span></th>
+            </tr>
+            <tr>
+                <td>いちごのショートケーキと画像</td>
+                <td>１１００</td>
+                <td>1,<%= link_to"変更", edit_customers_car_item_path,class:"btn btn-primary"%></td>
+                <td>小計</td>
+                <td><%= link_to"削除する", edit_customers_car_item_path,class:"btn btn-danger"%></td>
+            </tr>
+        </table>
+        <br>
+        <div class="shoppingcart_bottom">
+            <%= link_to"買い物を続ける",customers_items_path,class:"btn btn-primary"%>
+            <th>合計金額</th>      <th>１４００</th>
+            <%= link_to"情報入力にすすむ", edit_customers_orders_path,class:"btn btn-success"%>
+        </div>
+</div>

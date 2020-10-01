@@ -1,0 +1,10 @@
+.items {
+  display: inline-block;
+  float: left;
+  width: calc(100%/4);
+}
+
+.recommend_item {
+  background-color: aqua;
+}
+/*# sourceMappingURL=items.css.map */

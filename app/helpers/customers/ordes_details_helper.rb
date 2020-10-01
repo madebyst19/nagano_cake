@@ -1,0 +1,2 @@
+module Customers::OrdesDetailsHelper
+end

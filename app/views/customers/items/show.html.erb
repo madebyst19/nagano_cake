@@ -1,0 +1,33 @@
+<div class="row">
+        <div class="col-xs-3">
+            <div class="genre_table">
+                <table border="2">
+                    <tr>
+                        <th><h4>ジャンル検索<h2></th>
+                    </tr>
+                    <tr>
+                        <th>ケーキ</th> 
+                    </tr> 
+                    <tr>
+                        <th>焼き菓子</th> 
+                    </tr> 
+                    <tr>
+                        <th>プリン</th> 
+                    </tr>
+                    <tr>
+                        <th>キャンディ</th> 
+                    </tr>
+                </table>
+            </div>
+        </div>
+    <div class="col-xs-9">
+            <img src="/images/1356_arena.jpg" alt="画像">
+                <h4>いちごのショートケーキそれぞれの画像と説明文がはいるルビー文いれる</h4>
+                <p>説明文ああああああああああ説明文ああああああああああ説明文ああああああああああ</p>
+                <p>550en税込みになる計算式入れたい</p>
+                <%= form_with model: @item do |f| %>
+                <%= f.select :amount, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"]], include_blank: "選択して下さい" %>
+                <%= #link_to "カートにいれる",home_top,class:"btn btn-primary"%>
+            <% end %>
+    </div>
+</div>
