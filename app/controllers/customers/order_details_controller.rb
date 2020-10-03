@@ -1,4 +1,4 @@
-class Customers::CarItemsController < ApplicationController
+class Customers::OrdersDetailsController < ApplicationController
     def index
     end
 
@@ -19,4 +19,5 @@ class Customers::CarItemsController < ApplicationController
 
     def destroy
     end
+    
 end

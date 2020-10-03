@@ -24,4 +24,10 @@ class Admins::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+def new
+  @admin = Admin.new
+  if@admin.save
+    redirect_to admins_top_path
+  
+end
 end
