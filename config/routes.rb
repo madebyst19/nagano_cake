@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   namespace :customers  do
     resources :items, only:[:index,:show,:top]
-    resources :cart_items, only:[:index,:update,:destroy,:destroy_all,:create]
+    delete "cart_items/delete_all" => "cart_items#delete_all"
+    resources :cart_items, only:[:index,:update,:destroy,:create]
+  
   end
 
   devise_scope :customer do

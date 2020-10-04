@@ -24,7 +24,7 @@
                         <li><%= link_to "マイページ",home_about_path, class: "btn btn-light" %></li>
                         <li><%= link_to "商品一覧", customers_items_path, class: "btn btn-light" %></li>
                         <li><%= link_to "カート", home_about_path, class: "btn btn-light" %></li>
-                        <li><%= link_to "ログアウト", home_about_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "ログアウト", customers_sign_out_path, class: "btn btn-light" %></li>
                       <% elsif admin_signed_in? %>
                         <li><%= link_to "商品一覧", home_about_path, class: "btn btn-light" %></li>
                         <li><%= link_to "会員一覧", home_about_path, class: "btn btn-light" %></li>
@@ -37,8 +37,8 @@
                     <% else %>
                           <li><%= link_to "About", home_about_path, class: "btn btn-light" %></li>
                           <li><%= link_to "商品一覧",customers_items_path, class: "btn btn-light"%></li>
-                          <li><%= link_to "新規登録", home_about_path, class: "btn btn-light" %></li>
-                          <li><%= link_to "ログイン", home_about_path, class: "btn btn-success " %></li>
+                          <li><%= link_to "新規登録", customers_sign_up_path, class: "btn btn-light" %></li>
+                          <li><%= link_to "ログイン", customers_sign_in_path, class: "btn btn-success " %></li>
                   <% end %>
                 </ul>
               </nav>
