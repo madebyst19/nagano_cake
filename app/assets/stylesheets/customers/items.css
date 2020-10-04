@@ -1,0 +1,9 @@
+.items {
+  display: inline-block;
+  float: left;
+  width: calc(100%/4);
+}
+
+.recommend_item {
+}
+/*# sourceMappingURL=items.css.map */

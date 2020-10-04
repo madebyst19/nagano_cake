@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>top</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="genre_table">
+                <table border="2">
+                    <tr>
+                        <th><h4>ジャンル検索<h2></th>
+                    </tr>
+                    <tr>
+                        <th>ケーキ</th> 
+                    </tr> 
+                    <tr>
+                        <th>焼き菓子</th> 
+                    </tr> 
+                    <tr>
+                        <th>プリン</th> 
+                    </tr>
+                    <tr>
+                        <th>キャンディ</th> 
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-xs-9">
+                <div class="top_caption">
+                    <br>ようこそ、Nagano cakeへ！
+                    <br>このサイトはケーキ販売のECサイトになります。
+                    <br>会員でない方も商品の閲覧ができますが、
+                    <br>購入には会員登録が必要になります。
+                </div>
+                    <div class="recommend_item">
+                        <h3>オススメ商品</h3>
+                        <%#あとでEACH文入れるがいったん仮組み%>
+                        <%#= attachment_image_tag @user,:profile_image, :fill, 60, 60, fallback: "noimage.jpg", size:'100x100' %>
+                        <div class="items">
+                            <%= link_to image_tag("1356_arena.jpg",:size => "150x70"), root_path %>
+                            <p>商品名</p>
+                            <p>金額</p>
+                        </div>
+                         <div class="items">
+                            <%= link_to image_tag("1356_arena.jpg",:size => "150x70"),root_path %>
+                            <p>商品名</p>
+                            <p>金額</p>
+                        </div>
+                         <div class="items">
+                            <%= link_to image_tag("1356_arena.jpg",:size => "150x70"), root_path %>
+                            <p>商品名</p>
+                            <p>金額</p>
+                        </div>
+                         <%= link_to "もっと見る",home_about_path %>
+                    </div>
+        </div>
+</div>
+
+
+</body>
+</html>
