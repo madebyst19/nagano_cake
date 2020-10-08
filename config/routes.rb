@@ -1,32 +1,31 @@
 Rails.application.routes.draw do
+  get 'customers/show'
   devise_for :customers, skip: :all
   devise_for :admins
-  root 'home#top'
+  root 'customers/items#index'
   get "home/about" => "home/about#about"
 
   namespace :customers  do
     resources :items, only:[:index,:show,:top]
     delete "cart_items/delete_all" => "cart_items#delete_all"
+    get "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
     resources :cart_items, only:[:index,:update,:destroy,:create]
-  
+    resources :addresses, only:[:index,:new,:show,:edit,:update,:create]
+    resources :orders, only:[:new,:create,:index,:show]
+ 
+
   end
 
+
   devise_scope :customer do
-    get "customers/sign_in" => "customers/sessions#new"
-    post "customers/sign_in" => "customers/sessions#create"
-    delete "customers/sign_out" => "customers/sessions#destroy"
-    get "customers/sign_up" => "customers/registrations#new"
-    post "customers" => "customers/registrations#create"
+    devise_for :customers, controllers: {sessions: "customers/sessions", registrations: 'customers/registrations', passwords: 'customers/passwords'}
     get "customers_my_page" => "customers/#show"
     get "customers_edit" => "customers/edit#edit"
     patch "customers" => "customers/update#update"
     get "customers_unsubscribe" => "customers/unsubscribe#unsubscribe"
-    patch "costomers_withdraw" => "customers/withdraw#withdraw"
+    patch "customers_withdraw" => "customers/withdraw#withdraw"
   end
-  
- 
-  resources :addresses, only:[:index,:new,:show,:edit,:update,:create]
-  resources :orders, only:[:new,:confirm,:complete,:create,:index,:show]
 
     devise_scope :admin do
     get "admins/sign_in" => "admins/sessions#new"

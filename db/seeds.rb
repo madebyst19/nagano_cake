@@ -39,6 +39,7 @@ Customer.create!(
     email: "aa@gmail.com",
     password: "aaaaa998",
     postal_code: "333-4444",
+    address:"長野県太平",
     telephone_number: "090-000-0000",
     is_deleted: true
 )

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+before_action :authenticate_customer!
 class Customers::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation/new
   # def new
