@@ -4,7 +4,6 @@ class Customers::CartItemsController < ApplicationController
     def index
       @cart_items = current_customer.cart_items
       @order = Order.new
-      @tax = TAX
     end
 
     def edit

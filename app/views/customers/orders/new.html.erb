@@ -16,7 +16,7 @@
 
             <%= form.radio_button :address_option, 1 %>
             <%= form.label :address_option,"登録住所から選択",{value: 1,style: "display: inline-block;"}%>
-            <%= form.collection_select :address, Address.where(customer_id:current_customer.id),:id,:address %>
+            <%= form.collection_select :address_id, Address.where(customer_id:current_customer.id),:id,:address %>
             
             <%= form.radio_button :address_option, 2 %>
              <%= form.label :address_option,"新しいお届け先",{value: 2,style: "display: inline-block;"}%>

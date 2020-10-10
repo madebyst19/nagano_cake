@@ -1,47 +1,60 @@
 <div class="row">
-    <div class="col-xs-8">
-        <table border="2">
-            <thead>
+    <%= form_with(model: @order_complete,url:customers_orders_path,local: true, method: :post) do |f| %>
+        <div class="col-xs-8">
+            <table border="2">
+                <thead>
+                    <tr>
+                    <th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th>
+                    </tr>
+                </thead>
                 <tr>
-                <th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th>
+                    <% sum = 0 %>
+                    <% @cart_items.each do |cart_item|%>
+                        <td><%= cart_item.item.name %></td>
+                        <td><%= (cart_item.item.price*$tax).round %></td>
+                        <td><%= cart_item.amount %></td>
+                        <th><%= (cart_item.item.price*1.08).round*(cart_item.amount) %></th>
+                        <% cart_item_price = (cart_item.item.price*1.08*cart_item.amount).round %>
+                            <% cart_item_price %>
+                            <% sum = sum + cart_item_price %>
                 </tr>
-            </thead>
-            <tr>
-                <% @cart_items.each do |cart_item|%>
-                    <td><%= cart_item.item.name %></td>
-                    <td><%= cart_item.item.price*1.08.round %></td>
-                    <td><%= cart_item.amount %></td>
-                    <td><%= cart_item.item.price*1.08.round*(cart_item.amount) %></td>
-
-            </tr>
-            <% end%>
-        </table>
+                    <% end%>
+            </table>
+        </div>
+        <div class="col-xs-3">
+            <table border="2">
+                <tr>
+                    <td>送料</td>
+                    <td>800</td>
+                </tr>
+                <tr>
+                    <td>商品合計</td>
+                    <td><%= sum.round %></td>
+                </tr>
+                <tr>
+                    <td>請求金額</td>
+                    <td><%= (sum + 800).round %></td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <div class="col-xs-3">
-        <table border="2">
-            <tr>
-                <td>送料</td>
-                <td>800</td>
-            </tr>
-            <tr>
-                <td>商品合計</td>
-                <td><%#= %>１</td>
-            </tr>
-            <tr>
-                <td>請求金額</td>
-                <td><%#= %>２</td>
-            </tr>
-        </table>
-     </div>
-</div>
-<h2>支払い方法</h2>
-<%=@order_payment %>
-<br>
-<h2>お届け先</h2>
-<%=@order_address%>
-<%#= if :address_option == 0%>
-<%#= if :address_option == 1%>
-<%#= if :address_option == 2%>
+        <h2>支払い方法</h2>
+            <%=@order_payment %>
+            <br>
+        <h2>お届け先</h2>
+            <%= @order_address.postal_code%>
+            <%= @order_address.address%>
+            <br>
+            <%= @order_address.name%>
+          <%#addressオプションをローカルでエラーでたのでインスタンス変数にした%>
+        <%= button_to '情報を確定する',customers_orders_complete_path,class:"btn btn-primary",method: :get%>
+        <%= f.hidden_field :payment_method, value: @order_payment %>
+        <%= f.hidden_field :address, value: @address_option %>
+        <%= f.hidden_field :name, value: @name %>
+        <%= f.hidden_field :shipping_cost, value: 800 %>
+        <%= f.hidden_field :total_payment, value: (sum + 800).round %>
+        <%= f.hidden_field :status, value: true  %>
+         <%#= form.submit '情報を確定する',customers_orders_complete_path,class:"btn btn-primary"%>
 
-<%= button_to '情報を確定する', customers_orders_complete_path, class: 'fbtn' %>
-
+        <%= button_to "編集する",customers_edit_path ,style:"display:inline-block;",class:"btn btn-primary"%>
+<% end %>
