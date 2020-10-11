@@ -14,17 +14,17 @@ Rails.application.routes.draw do
     resources :cart_items, only:[:index,:update,:destroy,:create]
     resources :addresses, only:[:index,:new,:show,:edit,:update,:create,:destroy]
     resources :orders, only:[:new,:create,:index,:show]
- 
   end
 
 
   devise_scope :customer do
-    devise_for :customers, controllers: {sessions: "customers/sessions", registrations: 'customers/registrations', passwords: 'customers/passwords'}
     get "customers_my_page" => "customers#show"
     get "customers_edit" => "customers#edit"
     patch "customers" => "customers#update"
     get "customers_unsubscribe" => "customers#unsubscribe"
-    patch "customers_withdraw" => "customers#withdraw"
+    delete "customers_withdraw" => "customers#withdraw"
+    devise_for :customers, controllers: {sessions: "customers/sessions", registrations: 'customers/registrations', passwords: 'customers/passwords'}
+  
   end
 
     devise_scope :admin do

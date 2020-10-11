@@ -2,11 +2,19 @@
 <div class="col-xs-10">
 <h2 style="background-color:gray;display:inline-block">新規会員登録</h2>
 
-<%= form_for(resource, as: resource_name, url: customers_path) do |f| %>
+<%= form_for(resource, as: resource_name, url: customer_registration_path) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 <div class="field">
-    <%= f.label  :"名前" %><br />
-    <%= f.text_field :last_name , autofocus: true, autocomplete: "name" %>
+    <%= f.label  :"姓" %><br />
+    <%= f.text_field :first_name , autofocus: true, autocomplete: "first_name" %>
+     <%= f.label  :"名" %><br />
+    <%= f.text_field :last_name , autofocus: true, autocomplete: "last_name" %>
+  </div>
+  <div class="field">
+    <%= f.label  :"セイ" %><br />
+    <%= f.text_field :first_name_kana , autofocus: true, autocomplete: "first_name_kana" %>
+     <%= f.label  :"メイ" %><br />
+    <%= f.text_field :last_name_kana , autofocus: true, autocomplete: "last_name_kana" %>
   </div>
   <div class="field">
     <%= f.label :"メールアドレス" %><br />
@@ -45,7 +53,7 @@
 　<div class="login_view">
 <h2 style="background-color:gray;display:inline-block">既に登録済みの方</h2>
 <br>
-<%= link_to"こちら",customers_sign_in_path%><span>からログインしてください</span>
+<%= link_to"こちら",new_customer_session_path%><span>からログインしてください</span>
 </div>
 <%# <%= render "customers/shared/links" %> 
 </div>

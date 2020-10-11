@@ -7,21 +7,14 @@ class Customers::OrdersController < ApplicationController
     end
 
     def create
-        @order = current_customer.orders.new
-        @order.payment_method = params[:payment_method]
-        @order.address = params[:address]
-        @order.name = params[:name]
-        @order.shipping_cost = params[:shipping_cost]
-        @order.total_payment = params[:total_payment]
-        @order.status = params[:status]
-        if @order.save
-            current_customer.cart_items.destroy
-            redirect_to  customers_orders_complete_path
-            else
-                render "confirm"
-        end
-      
-    end
+         @order = current_customer.orders.new(order_create_params)
+         if @order.save
+             current_customer.cart_items.destroy_all
+             redirect_to  customers_orders_complete_path
+             else
+                 render "confirm"
+         end
+    end 
 
     def new
         @order = Order.new
@@ -45,8 +38,8 @@ class Customers::OrdersController < ApplicationController
     end
 
     def confirm
-        
-        @name = (current_customer.first_name) + (current_customer.last_name)
+        @order = current_customer.orders.new
+        @name = current_customer.first_name + current_customer.last_name
         @cart_items = current_customer.cart_items
         @order_payment = params[:order][:payment_method]
         @address_option = params[:order][:address_option]
@@ -63,6 +56,9 @@ class Customers::OrdersController < ApplicationController
     end
  private
     def order_params
-        params.require(:order).permit(:cart_item_id,:postal_code,:address,:name,:payment_method,:staus,:shipping_cost,:total_payment)
+        params.require(:order).permit(:cart_item_id,:postal_code,:address,:name,:payment_method,:status,:shipping_cost,:total_payment)
+      end
+      def order_create_params
+        params.require(:order).permit(:postal_code,:address,:name,:payment_method,:status,:shipping_cost,:total_payment)
       end
 end
