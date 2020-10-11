@@ -16,3 +16,6 @@ h3{
     text-align:center;
    margin:auto
 }
+.confirm_box h3{
+    float:left
+}
