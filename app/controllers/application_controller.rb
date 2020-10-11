@@ -1,13 +1,10 @@
 class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception
-    helper_method :current_cart_item
-
-    def current_cart
-      if session[:cart_item_id]
-        @cart = Cart.find(session[:cart_item_id])
-      else
-        @cart = Cart.create
-        session[:cart_item_id] = @cart.id
-      end
+  before_action :configure_permitted_parameters, if: :devise_controller?
+    # protect_from_forgery with: :null_session 
+        helper_method :current_cart_item
+    $tax = 1.08
+   
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name,:first_name,:last_name_kana,:first_name_kana,:postal_code,:address,:telephone_number])
     end
 end

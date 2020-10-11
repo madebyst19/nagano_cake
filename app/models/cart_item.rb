@@ -9,4 +9,7 @@ class CartItem < ApplicationRecord
         end
         current_item
       end
+      def sum
+        @sum = [cart_item.item.price*1.08*(cart_item.amount)]+[cart_item.item.price*1.08*(cart_item.amount)]
+      end
 end

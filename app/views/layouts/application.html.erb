@@ -8,44 +8,49 @@
       <%= csp_meta_tag %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
   </head>
  <body>
-    <div class="container">
-      <header class="navbar navbar-fixed-top navbar-inverse">
-            <nav class="nav navbar-nav navbar-left">
-                <%= link_to image_tag("mercilogo4.jpg",:size => "150x70"), root_path  %>
-            </nav>
-              <nav>
-                <ul class="navbar-nav navbar-right",style="display: flex">
+
+      
+          <!--<div class="container"> -->
+                
+              <header class="navbar navbar navbar-inverse">
+               <!--<div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+                <div class="container-fluid">
+                 <nav class="nav navbar-nav navbar-left">
+                   <%= link_to image_tag("mercilogo4.jpg",:size => "150x70"), root_path  %>
+                 </nav>
+                <ul class="nav navbar-nav navbar-right">
                   <% if customer_signed_in? %>
-                        <p>ようこそ、XXXさん！</p>
-                        <li><%= link_to "マイページ",home_about_path, class: "btn btn-light" %></li>
-                        <li><%= link_to "商品一覧", customers_items_path, class: "btn btn-light" %></li>
-                        <li><%= link_to "カート", home_about_path, class: "btn btn-light" %></li>
-                        <li><%= link_to "ログアウト", customers_sign_out_path, class: "btn btn-light" %></li>
+                        <p>ようこそ、XXXさん</p>
+                        <li class="nav-item"><%= link_to "マイページ", customers_my_page_path, class: "btn btn-light nav-link" %></li>
+                        <li class="nav-item"><%= link_to "商品一覧", customers_items_path, class: "btn btn-light nav-link" %></li>
+                        <li class="nav-item"><%= link_to "カート", customers_cart_items_path, class: "btn btn-light nav-link" %></li>
+                        <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, class: "btn btn-light nav-link",method: :delete %></li>
                       <% elsif admin_signed_in? %>
                         <li><%= link_to "商品一覧", home_about_path, class: "btn btn-light" %></li>
                         <li><%= link_to "会員一覧", home_about_path, class: "btn btn-light" %></li>
                         <li><%= link_to "注文履歴一覧", home_about_path, class: "btn btn-light" %></li>
                         <li><%= link_to "ジャンル一覧", home_about_path, class: "btn btn-light", method: :delete %></li>
-                        <li><%= link_to "ログアウト", home_about_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-light" ,method: :delete %></li>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                      </button>
+                        </button>
                     <% else %>
                           <li><%= link_to "About", home_about_path, class: "btn btn-light" %></li>
                           <li><%= link_to "商品一覧",customers_items_path, class: "btn btn-light"%></li>
-                          <li><%= link_to "新規登録", customers_sign_up_path, class: "btn btn-light" %></li>
-                          <li><%= link_to "ログイン", customers_sign_in_path, class: "btn btn-success " %></li>
+                          <li><%= link_to "新規登録", new_customer_registration_path, class: "btn btn-light" %></li>
+                          <li><%= link_to "ログイン", customer_session_path, class: "btn btn-success " %></li>
                   <% end %>
-                </ul>
-              </nav>
-          </header>
-
-       <%= yield %>
-    </div>
+                  </ul>
+                </div>
+              </header>
+        
+            <div class="container">
+              <%= yield %>
+            </div>
+       
+    <!--</div>-->
           <footer>
             <div class="bottom">
             </div>

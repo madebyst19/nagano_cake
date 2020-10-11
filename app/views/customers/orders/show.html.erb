@@ -1,0 +1,66 @@
+<div class="row">
+        <div class="col-xs-8">
+            <% sum = 0 %>
+            <% @orders.each do |order|%>
+                <table border="2">
+                    <thead>
+                        <tr>
+                            <th>注文日</th>
+                            <th><%= order.created_at %></th>
+                        </tr>
+                        <tr>
+                            <th>配送先</th>
+                            <th><%= order.postal_code %></th>
+                            <th><%= order.address %></th>
+                        </tr>
+                        <tr>
+                            <th>支払方法</th>
+                            <th><%= order.payment_method %></th>
+                        </tr>
+                        <tr>
+                            <th>ステータス</th>
+                            <th><%= order.status %></th>
+                        </tr>
+                    </thead>
+                       </table>
+            <% end%>
+                    <% cart_item_price = (cart_item.item.price*1.08*cart_item.amount).round %>
+                    <% cart_item_price %>
+                    <% sum = sum + cart_item_price %>
+             
+        </div>
+        <div class="col-xs-3">
+            <h3>請求情報</h3>
+                <table border="2">
+                    <tr>
+                        <td>商品合計</td>
+                        <td><%= sum.round %></td>
+                    </tr>
+                    <tr>
+                        <td>送料</td>
+                        <td>800</td>
+                    </tr>
+                    <tr>
+                        <td>請求金額</td>
+                        <td><%= (sum + 800).round %></td>
+                    </tr>
+                </table>
+        </div>
+</div>
+    <h2>注文内容</h2>
+       <table border="2">
+            <% sum = 0 %>
+            <% @cart_items.each do |cart_item|%>
+                <thead>
+                    <tr>
+                    <th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td><%= cart_item.item.name %></td>
+                    <td><%= (cart_item.item.price*$tax).round %></td>
+                    <td><%= cart_item.amount %></td>
+                    <th><%= (cart_item.item.price*1.08).round*(cart_item.amount) %></th>
+                </tr>
+            <% end%>
+        </table>
