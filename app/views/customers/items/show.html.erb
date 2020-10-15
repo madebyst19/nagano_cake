@@ -1,9 +1,9 @@
 <div class="row">
         <div class="col-xs-3">
-            <div class="genre_table">
-                <table border="2">
+            <div>
+                <table class="genre_table">
                     <tr>
-                        <th><h4>ジャンル検索<h2></th>
+                        <th class="genre_tabel_title"><h4>ジャンル検索<h2></th>
                     </tr>
                     <tr>
                         <th>ケーキ</th> 
@@ -18,16 +18,17 @@
                         <th>キャンディ</th> 
                     </tr>
                 </table>
+ 
             </div>
         </div>
     <div class="col-xs-9">
             <%#= attachment_image_tag @item,:image_id, :fill, 60, 60, format: 'jpeg' %>
             <br>
-                <%= @item.name %>
-                <%= @item.introduction %>
-                <%= @item.price %>
-            <%= form_for(@cart_item,url:customers_cart_items_path) do |f| %>
-                <%= f.select :amount, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"]], include_blank: "選択して下さい" %>
+                <h4><%= @item.name %></h4>
+                <p><%= @item.introduction %></p>
+                <h5>¥<%= @item.price %>(税込み)</h5>
+                 <%= form_for(@cart_item,url:customers_cart_items_path) do |f| %>
+                <%= f.select :amount, [*1..100], include_blank: "個数選択" %>
                 <%= f.hidden_field :item_id, :value => @item.id %>
                 <%= f.submit "カートにいれる",class:"btn btn-primary"%>
             <% end %>

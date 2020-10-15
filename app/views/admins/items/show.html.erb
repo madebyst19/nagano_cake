@@ -1,25 +1,29 @@
 <div class="row">
-    <h3>商品詳細</h3>
-        <div class="col-xs-3">
-               <% @item.each do |item|%>
-                <%= item.image_id %>
-            <% end%>
-        </div>
-        <div class="col-xs-7">
-            <% @item.each do |item|%>
-                <h4>商品名</h4>
-                <%= item.name %>
-                <h4>商品説明</h4>
-                    <%= item.introduction %>
-                <h4>ジャンル名</h4>
-                    <%= item.genre %>
-                <h4>税抜価格</h4>
-                    <%= item.price %>
-                <h4>販売ステータス</h4>
-                    <%= item.status %>
-             <% end %>
-        </div>
-        <div class="col-xs-2">
-        <%= link_to "編集する", edit_admins_item_path %>
-        </div>
+    <h3 style="background-color:gray;display:inline-block">商品詳細</h3>
+    <div class="col-xs-4">
+        <td><%= attachment_image_tag @item,:image ,:fill,  60, 60, fallback: "noimage.jpg", size:'100x100'%></td>
+    </div>
+    <div class="col-xs-8">
+        <h4>商品名&nbsp;&nbsp;
+            <%= @item.name %>
+        </h4>
+        <h4>商品説明&nbsp;&nbsp;
+        <%= @item.introduction %>
+        </h4>
+        <h4>ジャンル名&nbsp;&nbsp;
+            <%= @item.genre.name %>
+        </h4>
+        <h4>税込価格(税抜価格)&nbsp;&nbsp;
+            <%= (@item.price * $tax).round  %>
+            (<%= @item.price %>)円
+        </h4>
+        <h4>販売ステータス&nbsp;&nbsp;
+        <% if @item.is_active == YAML.load("true")%>
+                販売中
+                <% else  %>
+                停止
+                <% end %>
+        </h4>
+        <%= link_to "編集する", edit_admins_item_path,class:"btn btn-primary",style:"float:right;" %>
+    </div>
 </div>

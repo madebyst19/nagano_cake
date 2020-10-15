@@ -1,4 +1,4 @@
-<h3 style="background-color:gray;display:inline-block">商品情報確認</h3>
+<h3 style="background-color:gray;display:inline-block">注文情報確認</h3>
 <div class="row">
     <%= form_with(model: @order, url:customers_orders_path,local: true, method: :post) do |f| %>
         
@@ -8,17 +8,17 @@
                     <thead>
                         <th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th>
                     </thead>
-                    <tr>
                         <% sum = 0 %>
                         <% @cart_items.each do |cart_item|%>
-                            <td><%= cart_item.item.name %></td>
-                            <td><%= (cart_item.item.price*$tax).round %></td>
-                            <td><%= cart_item.amount %></td>
-                            <td><%= (cart_item.item.price*1.08).round*(cart_item.amount) %></td>
-                                <% cart_item_price = (cart_item.item.price*1.08*cart_item.amount).round %>
-                                    <% cart_item_price %>
-                                    <% sum = sum + cart_item_price %>
-                    </tr>
+                            <tr>
+                                <td><%= cart_item.item.name %></td>
+                                <td><%= (cart_item.item.price*$tax).round %></td>
+                                <td><%= cart_item.amount %></td>
+                                <td><%= (cart_item.item.price*1.08).round*(cart_item.amount) %></td>
+                                    <% cart_item_price = (cart_item.item.price*1.08*cart_item.amount).round %>
+                                        <% cart_item_price %>
+                                        <% sum = sum + cart_item_price %>
+                            </tr>
                         <% end%>
                 </table> 
             </div>
@@ -58,7 +58,8 @@
         <%= f.hidden_field :name, value: @name %>
         <%= f.hidden_field :shipping_cost, value: 800 %>
         <%= f.hidden_field :total_payment, value: (sum + 800).round %>
-        <%= f.hidden_field :status, value: true  %>
+        <%#= f.hidden_field :status, value: @status  %>
+        <%#= f.hidden_field :status, value: true  %>
          <%#= form.submit '情報を確定する',customers_orders_complete_path,class:"btn btn-primary"%>
         <br>
         <%= f.submit '情報を確定する',class:"btn btn-success"%>

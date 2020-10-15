@@ -2,9 +2,9 @@
     <h3 style="background-color:gray;display:inline-block">マイページ</h3>
     <br>
     <div class="button-top">
-        <h3>登録情報</h3>
-            <%= button_to "編集する",customers_edit_path ,style:"display:inline-block;",class:"btn btn-primary",method: :get %>
-            <%= button_to "パスワードを変更する",customers_edit_path,style:"display:inline-block;" ,class:"btn btn-primary"%>
+        <h4>登録情報</h4>
+            <%= button_to "編集する",edit_customers_customers_path ,style:"display:inline-block;",class:"btn btn-primary",method: :get %>
+            <%= button_to "パスワードを変更する",edit_customers_customers_path,style:"display:inline-block;" ,class:"btn btn-primary"%>
     </div>
     <table border="2">
         <tr>

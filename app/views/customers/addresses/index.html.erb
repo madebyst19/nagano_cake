@@ -1,6 +1,13 @@
 <div class="row">
+　 <h3 class="items">商品一覧</h3><%= link_to new_admins_item_path do %>
+<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg>
+<% end %>
     <h3 style="background-color:gray;display:inline-block">配送先登録/一覧</h3>
         <%= form_with(model: @address, url:customers_addresses_path,local: true,method: :post) do |f| %>
+            <table>
             <tr>
                 <th class="col-xs-4">郵便番号(ハイフンなし)</th>
                 <td class="col-xs-8"><%= f.text_field:postal_code %></td>
@@ -15,6 +22,7 @@
                 <th class="col-xs-4">宛名</th>
                 <td class="col-xs-8"><%= f.text_field:name %></td>
             </tr>
+            </table>
         <%= f.submit "登録する",class:"btn btn-success" %>
         <% end %>
 </div>
@@ -26,8 +34,8 @@
                 <th><%= address.address %></th>
                 <th><%= address.name %></th>
                 <th>
-                <%= button_to customers_address_path(address), method: :pacth, class: 'btn btn-primary' %>
-                <%= button_to customers_address_path(address), method: :delete, class: 'btn btn-danger' %>
+                <%= button_to "あ",customers_addresses_path(address), method: :pacth, class: 'btn btn-primary' %>
+                <%= button_to "い",customers_addresses_path(address), method: :delete, class: 'btn btn-danger' %>
                 </th>
                 <% end %>
         </tr>
