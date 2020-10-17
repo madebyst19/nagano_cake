@@ -15,13 +15,18 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
-
+ .clearfix:after {
+    content: "";
+    clear: both;
+    display: block;
+ }
  .btn btn-primary{
      float:right;
  }
  .field{
-     padding:20px 5px;
+     margin-top:20px;
  }
+
  svg{
      float:right;
  }
@@ -34,3 +39,98 @@
  .genre_tabel_title{
      border-bottom: 1px black solid;
  }
+ .recommend_item{
+     display: inline-block;
+     display: flex;
+     flex-wrap: wrap;
+ }
+ .recommend_item_each{
+     width:25%;
+ }
+ 
+ footer{
+    width: 100%;
+
+    text-align: center;
+    padding: 30px 0;
+    position: absolute;
+    bottom: 0; 
+ }
+ .wrapper{
+     min-height:100vh;
+     position: relative;
+     padding-bottom: 120px;
+     box-sizing: border-box;
+ }
+ .cart_item_index table{
+     width:100%;
+ }
+ .cart_item_index td{
+    padding:10px 10px;
+}
+.cart_items_bottom th{
+    width:30px;
+}
+.cart_items_bottom {
+    .col-xs-4{
+        float:right;
+        padding:10px 10px;
+    }
+}
+.button_delete {
+    float:right;
+}
+.payment_address_box{
+    h5{
+        padding-right:30px;
+    }
+}
+.left_box table{
+    width:100%;
+}
+.right_box table{
+    width:90%;
+}
+.payment_address_box{
+    margin-top:10px;
+}
+.thanks{
+    float:center;
+}
+.mypage table{
+    width:70%;
+    float:left;
+}
+.button-top{
+    
+    display: flex;
+   
+}
+.bottom-wrapper{
+    clear:both;
+    display: flex;
+    margin-top:15px;
+}
+.bottom-wrapper h4{
+    margin-right:20px ;
+  
+}.mypage th{
+    width:150px;
+}
+.address-wrapper{
+    .row{
+        margin-top:15px;
+    }
+}
+.address-index table{
+    width:100%;
+}
+.edit_address {
+    .row{
+        margin-top: 10px;
+    }
+
+}
+.items_small_index table{
+    width:100%;
+}

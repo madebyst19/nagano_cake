@@ -44,18 +44,17 @@ class Customers::OrdersController < ApplicationController
 
     def confirm
         @order = current_customer.orders.new
-        @name = current_customer.first_name + current_customer.last_name
+        @order_postal_code = params[:order][:postal_code]
         @cart_items = current_customer.cart_items
         @order_payment = params[:order][:payment_method]
         @address_option = params[:order][:address_option]
-        # @status = params[:order][:status]
+        # @status = params[:order][:payment_method]
 
-        # if order_params[:status] == '有効'
-        #     @order.status = true
-        # elsif order_params[:status] == '無効'
-        #     @order.status = false
+        # if order_params[:payment_method] == '有効'
+        #     @order.payment_method = true
+        # elsif order_params[:payment_method] == '無効'
+        #     @order.payment_method = false
         # end
-
         if @address_option == "0"
             @order_address = Order.new(address: current_customer.address,postal_code: current_customer.postal_code,name: current_customer.last_name + current_customer.first_name)
         elsif @address_option == "1"

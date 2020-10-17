@@ -17,18 +17,18 @@
         </div>
         <div class="col-xs-9">
           <%= f.password_field :password, autocomplete: "current-password",class:"col-xs-8" %>
-          <p><%= link_to '→パスワードをお忘れの方はこちら',root_path,style:"float:right;" %></p>
         </div>
       </div>
-      <div class="actions">
-        <%= f.submit "ログイン",class:"btn btn-primary"%>
-        <% end %>
+          <p><%= link_to '→パスワードをお忘れの方はこちら',root_path,style:"float:left;",style:"margin:30%;" %></p>
+          <%= f.submit "ログイン",class:"btn btn-primary"%>
+          <% end %>
       </div>
-  </div>
-<br>
-<div class="not-register">
-<h4 style="background-color:gray;display:inline-block">登録がお済みではない方</h4>
-<br>
-<%= link_to"こちら",new_customer_registration_path%><span>から新規登録を行なってください</span>
-</div>
-</div>
+      <br>
+      <div class="not-register">
+        <h4 style="background-color:gray;display:inline-block">登録がお済みではない方</h4>
+         <br>
+        <div style="margin-left:100px;">
+          <%= link_to"こちら",new_customer_registration_path%><span>から新規登録を行なってください</span>
+        </div>
+      </div>
+    </div>

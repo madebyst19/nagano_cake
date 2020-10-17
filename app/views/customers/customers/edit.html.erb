@@ -1,75 +1,103 @@
-
-<div class="row">
-    <h2 style="background-color:gray;display:inline-block">注文情報入力</h2>
-        <%= form_with(model: @customer, url:customers_customers_path, local: true,method: :patch) do |f| %>
-            <table>
-                <div class="field">
-                    <tr>
-                        <th class="col-xs-4">名前</th>
-                            <td class="col-xs-8">
-                                （姓）<%= f.text_field :first_name , autofocus: true, autocomplete: "name" %>
-                                （名）<%= f.text_field :last_name , autofocus: true, autocomplete: "name" %>
-                            </td>
-                    </tr>
+<%= form_with(model: @customer, url:customers_customers_path, local: true,method: :patch) do |f| %>
+    <h3 style="background-color:gray;display:inline-block; margin-left:100px;">登録情報編集</h3>
+        <div class="row">
+            <div class="field">
+                <div class=" col-xs-4">
+                    <%= f.label :"氏名" %>
                 </div>
-                <br>
-                <div class="field">
-                    <tr>
-                        <th class="col-xs-4">かな</th>
-                            <td class="col-xs-8">
-                                （セイ）<%= f.text_field :first_name_kana , autofocus: true, autocomplete: "name" %>
-                                （メイ）<%= f.text_field :last_name_kana , autofocus: true, autocomplete: "name" %>
-                            </td>
-                    </tr>
+                <div class="name_box">
+                  <div class="col-xs-8">
+                    <%= f.label  :"姓" %>
+                    <%= f.text_field :first_name , autofocus: true, autocomplete: "first_name",style:"margin-left:15px;" %>
+                    <%= f.label  :"名" %>
+                    <%= f.text_field :last_name , autofocus: true, autocomplete: "last_name",style:"margin-left:15px;" %>
+                  </div>
                 </div>
-                <div class="field">
-                    <tr>
-                        <th class="col-xs-4">メールアドレス</th>
-                            <td class="col-xs-8">
-                                
-                                <%= f.text_field :email , autofocus: true, autocomplete: "email" %>
-                            </td>
-                    </tr>
+            </div>
+          </div>
+            <div class="row">
+              <div class="field">
+                <div class=" col-xs-4">
+                   <%= f.label :"フリガナ" %>
                 </div>
-                <br>
-                <div class="field">
-                    <tr>
-                        <th class="col-xs-4">郵便番号（ハイフンなし）</th>
-                            <td class="col-xs-8">
-                            
-                                <%= f.text_field :postal_code , autofocus: true, autocomplete: "name" %>
-                            </td>
-                    </tr>
+                <div class="col-xs-8">
+                  <%= f.label  :"セイ" %>
+                  <%= f.text_field :first_name_kana , autofocus: true, autocomplete: "first_name" %>
+                  <%= f.label  :"メイ" %>
+                  <%= f.text_field :last_name_kana , autofocus: true, autocomplete: "last_name" %>
                 </div>
-                <br>
-                <div class="field">
-                    <tr>
-                        <th class="col-xs-4">住所</th>
-                            <td class="col-xs-8">
-                            
-                                <%= f.text_field :address , autofocus: true, autocomplete: "name" %>
-                            </td>
-                    </tr>
+              </div>
+            </div>
+          <div class="row">
+            <div class="field">
+              <div class=" col-xs-4">
+                <%= f.label :"メールアドレス" %>
                 </div>
-                <br>
-                <div class="field">
-                    <tr>
-                        <th class="col-xs-4">電話番号（ハイフンなし）</th>
-                            <td class="col-xs-8">
-                    
-                                <%= f.text_field :telephone_number , autofocus: true, autocomplete: "name" %>
-                            </td>
-                    </tr>
-                </div>
-                <br>
-               
-            </table>
+                <div></div>
+                <div class="col-xs-8">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email",style:"margin-left:30px;" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <div class=" col-xs-4">
+                <%= f.label :"郵便番号(ハイフンなし)" %>
+              </div>
+              <div class="col-xs-8">
+                  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code",style:"margin-left:30px;" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <div class="col-xs-4">
+                <%= f.label :"住所" %>
+              </div>
+              <div class="col-xs-8">
+                <%= f.text_field :address, autofocus: true, :size=>"48", autocomplete: "address" ,style:"margin-left:30px;"%>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <div class=" col-xs-4">
+                <%= f.label :"電話番号" %>
+              </div>
+              <div class="col-xs-8 ">
+                <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" ,style:"margin-left:30px;"%>
+              </div>
+            </div>
+          </div>
+          <div class="row"> 
+            <div class="field">
+              <div class=" col-xs-4">
+                <%= f.label :"パスワード" %>
+                <% if @minimum_password_length %>
+                  <em>（<%= @minimum_password_length %>文字以上）</em>
+                <% end %><br />
+              </div>
+              <div class="col-xs-8">
+                <%= f.password_field :password, autocomplete: "new-password",style:"margin-left:30px;" %>
+              </div>
+            </div>
+          </div>
+        <div class="row">
+          <div class="field">
+            <div class=" col-xs-4">
+              <%= f.label :"パスワード（確認用）" %>
+            </div>
+            <div class="col-xs-8">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" ,style:"margin-left:30px;"%>
+            </div>
+          </div>
+        </div>
             <%= f.hidden_field :encrypted_password, value: current_customer.encrypted_password %>
             <%= f.hidden_field :reset_password_token, value: current_customer.reset_password_token %>
          <br>
         <div class="actions">
-            <%= f.submit "編集内容を保存する",class:"btn  btn-primary" %>
-            <%= link_to "退会する",customers_customers_unsubscribe_path,class:"btn  btn-danger"  %>
+            <%= f.submit "編集内容を保存する",class:"btn  btn-primary",style:"margin-left:100px;" %>
+            <%= link_to "退会する",customers_customers_unsubscribe_path,class:"btn  btn-danger",style:"margin-left:50px;"  %>
 
         </div>
     <% end %>

@@ -12,22 +12,19 @@
                 </table>
             </div>
     <% if customer_signed_in? %>
-        <div class="col-xs-9">
+             <div class="col-xs-9">
+                <h3>商品一覧（全<%= (@items).count %>件)</h3>
               <div class="recommend_item">
-                <div class="item-sum">
-                <h3>商品一覧</h3>
-                    <p>（全<%= (@items).count %>件) </p>
-                </div>
-                <br>
                <% @items.each do |item|%>
-                <tr>
-                <td><%= link_to (image_tag "#{item.image_id}",size:'100x100'),customers_item_path(item.id) %></td>
-                        <%#= link_to (item.image_id), do  %>
-                        <%#= attachment_image_tag item,:image,fallback: "noimage.jpg", size:'100x100' %>
+               <div class="recommend_item_each">
+                
+                <%#= link_to (image_tag"#{item.image_id}",size:'60x60',fallback: "noimage.jpg", size:'60x60'),customers_item_path(item.id) %></td>
+                        <%= link_to customers_item_path(item) do  %>
+                        <%= attachment_image_tag item,:image,fallback: "noimage.jpg", size:'100x100' %>
                     <h5><%=item.name %></h5>
                     <h5>¥<%=item.price %></h5>
-                    <%# end %>
-                <tr>
+                    <% end %>
+                </div>
                 <% end%>
               </div>   
         </div>
@@ -41,15 +38,14 @@
             </div>
               <h3>オススメ商品</h3>
             <div class="recommend_item">
-                <% 2.times do |i|%>
-                 <tr>
-    
-                    <%= link_to customers_item_path(@items[i].id) do %> 
-                    <%= attachment_image_tag @items[i],:image, fallback: "noimage.jpg", size:'100x100' %>
-                    <h5><%= @items[i].name %></h5>
-                    <h5>¥<%=@items[i].price %></h5> 
-                    <% end %>
-                 <tr>
+                <% 4.times do |i|%>
+                    <div class="recommend_item_each">
+                        <%= link_to customers_item_path(@items[i].id) do %> 
+                        <%= attachment_image_tag @items[i],:image, fallback: "noimage.jpg", size:'100x100' %>
+                        <p><%= @items[i].name %></p>
+                        <p>¥<%=@items[i].price %></p>
+                        <% end %>
+                    </div>
                 <% end %>
             </div>
         </div>
