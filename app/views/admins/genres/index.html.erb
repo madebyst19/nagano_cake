@@ -1,4 +1,4 @@
-<h3 style="background-color:gray;display:inline-block">ジャンル一覧</h3>
+<h3>ジャンル一覧</h3>
   <%= form_with(model: @genre, url:admins_genres_path,local: true,method: :post) do |f| %>
     <%= f.text_field:name %>
         <%= f.radio_button :is_active, :"true" %>

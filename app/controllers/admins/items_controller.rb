@@ -35,12 +35,12 @@ class Admins::ItemsController < ApplicationController
     end
 
     def update
+        @genres = Genre.all
         @item = Item.find(params[:id])
-        @genres = Genre.find(params[:id])
         if @item.update(item_params)
-            redirect_to admins_item_path(@item.id)
+            redirect_to admins_item_path(@item)
           else
-            render "edit"
+            render "index"
           end
     end
     private

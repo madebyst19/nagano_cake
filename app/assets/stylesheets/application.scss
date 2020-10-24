@@ -134,3 +134,38 @@
 .items_small_index table{
     width:100%;
 }
+.cart_items_bottom{
+    .col-xs-4 table{
+        margin-left:20px;
+        width:90%;
+        
+    }
+}
+.address-index{
+    margin-top:50px;
+    th{
+        padding:5px;
+    }
+    td{
+        padding:5px;
+    }
+    table{
+        width:100%;
+    }
+}
+h3{
+    background-color:gray;
+    margin-left:100px;
+    display:inline-block
+
+}
+.order_info {
+    .payment, .address{
+    margin-left:50px;
+    }
+}
+.order_show_view{
+    table{
+        width:90%;
+    }
+}

@@ -39,6 +39,10 @@ class Customers::AddressesController < ApplicationController
     end
     
     def destroy
+        @address = Address.find(params[:id])
+        @address.destroy
+       redirect_to customers_addresses_path
+
     end
     private
     def address_params

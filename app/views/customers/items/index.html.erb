@@ -13,7 +13,7 @@
             </div>
     <% if customer_signed_in? %>
              <div class="col-xs-9">
-                <h3>商品一覧（全<%= (@items).count %>件)</h3>
+                <h2>商品一覧（全<%= (@items).count %>件)</h2>
               <div class="recommend_item">
                <% @items.each do |item|%>
                <div class="recommend_item_each">
@@ -36,7 +36,7 @@
                 <br>会員でない方も商品の閲覧ができますが、
                 <br>購入には会員登録が必要になります。
             </div>
-              <h3>オススメ商品</h3>
+              <h2>オススメ商品</h2>
             <div class="recommend_item">
                 <% 4.times do |i|%>
                     <div class="recommend_item_each">
@@ -48,6 +48,7 @@
                     </div>
                 <% end %>
             </div>
+            <%= link_to "もっと見る",root_path,style:"margin-left:500px;"%>
         </div>
         <% end %>
 </div>

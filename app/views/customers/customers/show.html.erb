@@ -1,5 +1,5 @@
 <div class="row">
-    <h3 style="background-color:gray;display:inline-block">マイページ</h3>
+    <h3>マイページ</h3>
     <br>
     <div class="button-top">
         <h4>登録情報</h4>
@@ -40,8 +40,8 @@
                 <%= button_to "一覧をみる",customers_addresses_path ,class:"btn btn-primary",method: :get ,style:"margin-left:15px;"%>
             </div>
             <div class="bottom-wrapper">
-                    <h4 >注文履歴</h4>
-                  <%= button_to "一覧をみる",customers_orders_path ,class:"btn btn-primary",style:"display:inline-block;"%>
+            <h4 >注文履歴</h4>
+            <%= button_to "一覧をみる",customers_orders_path ,method: :get,class:"btn btn-primary",style:"display:inline-block;"%>
             </div>
         
 </div>

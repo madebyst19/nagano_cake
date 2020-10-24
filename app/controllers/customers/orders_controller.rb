@@ -2,10 +2,14 @@ class Customers::OrdersController < ApplicationController
     before_action :authenticate_customer!
     
     def index
+        @orders = Order.where(customer_id:current_customer.id)
+        # @cart_items = current_customer.cart_items
+        cart_items = CartItem.where(customer_id:current_customer.id)
     end
 
     def create
          @order = current_customer.orders.new(order_create_params)
+        
          @order.status = 0
          if @order.save
             @cart_items = current_customer.cart_items
@@ -20,8 +24,9 @@ class Customers::OrdersController < ApplicationController
              current_customer.cart_items.destroy_all
              redirect_to  customers_orders_complete_path
              else
-                 render "confirm"
-           end
+                render "confirm"
+        end
+
     end 
 
     def new
@@ -32,11 +37,21 @@ class Customers::OrdersController < ApplicationController
     end
 
     def show
-        @orders = current_customer.orders
+        @order = Order.find(params[:id])
+        # @order_detail = OrderDetail.find(params[:id])
+        @order_details = OrderDetail.where(order_id: @order.id)
         @cart_items = current_customer.cart_items
+        # @order_details = OrderDetail.where(order_id:@order.id)
+        @sum = 0
+        @order.order_details.each do |order_detail|
+        @sum = @sum + (order_detail.item.price*1.08*order_detail.amount).round
+        end
+        @sum
+        
     end
 
     def upddate
+        
     end
 
     def destroy
@@ -56,7 +71,7 @@ class Customers::OrdersController < ApplicationController
         #     @order.payment_method = false
         # end
         if @address_option == "0"
-            @order_address = Order.new(address: current_customer.address,postal_code: current_customer.postal_code,name: current_customer.last_name + current_customer.first_name)
+            @order_address = Order.new(address: current_customer.address,postal_code: current_customer.postal_code,name: current_customer.first_name + current_customer.last_name)
         elsif @address_option == "1"
             @address = Address.find(params[:order][:address_id])
             @order_address = Order.new(address: @address.address,postal_code: @address.postal_code,name: @address.name)
