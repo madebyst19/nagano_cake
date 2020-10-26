@@ -16,7 +16,7 @@ Genre.create!(
 Item.create!(
     name:"シフォンケーキ",
     introduction: '美味しい',
-   image_id: "cake.jpg",
+    # image_id: ,
     genre_id: 1,
     price: 150,
     is_active: true
@@ -25,7 +25,7 @@ Item.create!(
     Item.create!(
         name:"プリン",
         introduction: '滑らか',
-       image_id: "cake2.jpg",
+    #    image_id: "cake2.jpg",
         genre_id: 1,
         price: 120,
         is_active: true

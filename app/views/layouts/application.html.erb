@@ -6,54 +6,54 @@
      <title>DwcRailsAppTemplate</title>
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
+     <script src="https://kit.fontawesome.com/a1965c550c.js" crossorigin="anonymous"></script>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
  <body>
-
-      
+  <div class="wrapper">
           <!--<div class="container"> -->
-                
               <header class="navbar navbar navbar-inverse">
                <!--<div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
                 <div class="container-fluid">
                  <nav class="nav navbar-nav navbar-left">
-                   <%= link_to image_tag("mercilogo4.jpg",:size => "150x70"), root_path  %>
+                   <%= link_to image_tag("mercilogo4.jpg",size: "150x70"), root_path  %>
+                   <%#= link_to image_tag("mercilogo4.jpg :size =") %>
                  </nav>
                 <ul class="nav navbar-nav navbar-right">
                   <% if customer_signed_in? %>
-                        <p>ようこそ、XXXさん</p>
-                        <li class="nav-item"><%= link_to "マイページ", customers_my_page_path, class: "btn btn-light nav-link" %></li>
+                        <li style="margin:15px 20px 0 0;color:white;">ようこそ、<%= current_customer.first_name + current_customer.last_name %>さん</li>
+                        <li class="nav-item"><%= link_to "マイページ", customers_customers_my_page_path, class: "btn btn-light nav-link" %></li>
                         <li class="nav-item"><%= link_to "商品一覧", customers_items_path, class: "btn btn-light nav-link" %></li>
                         <li class="nav-item"><%= link_to "カート", customers_cart_items_path, class: "btn btn-light nav-link" %></li>
                         <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, class: "btn btn-light nav-link",method: :delete %></li>
                       <% elsif admin_signed_in? %>
-                        <li><%= link_to "商品一覧", home_about_path, class: "btn btn-light" %></li>
-                        <li><%= link_to "会員一覧", home_about_path, class: "btn btn-light" %></li>
-                        <li><%= link_to "注文履歴一覧", home_about_path, class: "btn btn-light" %></li>
-                        <li><%= link_to "ジャンル一覧", home_about_path, class: "btn btn-light", method: :delete %></li>
+                        <li><%= link_to "商品一覧", admins_items_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "会員一覧", admins_customers_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "注文履歴一覧", admins_orders_path, class: "btn btn-light" %></li>
+                        <li><%= link_to "ジャンル一覧", admins_genres_path, class: "btn btn-light"%></li>
                         <li><%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-light" ,method: :delete %></li>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                        </button>
+                        </button> %>
                     <% else %>
                           <li><%= link_to "About", home_about_path, class: "btn btn-light" %></li>
                           <li><%= link_to "商品一覧",customers_items_path, class: "btn btn-light"%></li>
                           <li><%= link_to "新規登録", new_customer_registration_path, class: "btn btn-light" %></li>
-                          <li><%= link_to "ログイン", customer_session_path, class: "btn btn-success " %></li>
+                          <li><%= link_to "ログイン", customer_session_path, class: "btn btn-light" %></li>
                   <% end %>
                   </ul>
                 </div>
               </header>
-        
+
             <div class="container">
               <%= yield %>
             </div>
-       
     <!--</div>-->
           <footer>
-            <div class="bottom">
-            </div>
+           <hr size="1" style="color:#fbfbfbf">
           </footer>
+    </div>
   </body>
 </html>

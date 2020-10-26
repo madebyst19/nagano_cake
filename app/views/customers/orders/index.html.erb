@@ -1,13 +1,30 @@
 <div class="row">
-<h3 style="background-color:gray;display:inline-block">注文一覧履歴</h3>
+<h3 >注文一覧履歴</h3>
  <table border="2">
-    <tr>
-        <th>注文日</th>
-        <th>配送先</th>
+    <tr style="background-color:lightgray">
+      <th>注文日</th><th>配送先</th><th>注文商品</th><th>支払金額</th><th>ステータス</th><th>注文詳細</th>
     </tr>
-    <tr>
-        <td><%#=オーダの完了ができたら作る%></td>
-        <td><%=%></td>
-    </tr>
- </table>
-</div>
+    <tbody>
+        <% @orders.each do |order|%>
+                  <% amount_sum = 0%>
+                    <td><%= order.created_at.strftime("%Y/%m/%d")%></td>
+                    <td>
+                        <%= order.postal_code  %>
+                        <%= order.address %>
+                        <%= order.customer.first_name + order.customer.last_name %>
+                    </td>
+                    <td>
+                        <% order.order_details.each do |order_detail|  %>
+                        <%= order_detail.item.name %>
+                        <% end %>
+                    </td>
+
+                    <td><%= order.total_payment%></td>
+                    <td><%= order.status %></td>
+                    <td><%= link_to"表示する",customers_order_path(order),class:"btn btn-primary" %></td>
+                </tr>
+        <% end %>
+
+    </tbody>
+
+</table>

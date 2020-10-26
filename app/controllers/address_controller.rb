@@ -22,15 +22,7 @@ class AddressController < ApplicationController
   def show
   end
 
-  def update
-      @address = Address.find(params[:id])
-      if @address.update(address_params)
-        redirect_to customers_address_path(@address.id)
-      else
-        render 'edit'
-      end
-    end
-  end
+
 
   def destroy
     address = current_customer.address
@@ -39,6 +31,6 @@ class AddressController < ApplicationController
   end
   private
   def address_params
-    params.require(:cart_item).permit(:postal_code,:address,:name)
+    params.require(:address).permit(:postal_code,:address,:name)
   end
 end

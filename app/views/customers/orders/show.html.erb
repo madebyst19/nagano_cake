@@ -1,66 +1,69 @@
+<div class="order_show_view">
+<h3>注文履歴詳細</h3>
 <div class="row">
-        <div class="col-xs-8">
-            <% sum = 0 %>
-            <% @orders.each do |order|%>
-                <table border="2">
-                    <thead>
-                        <tr>
-                            <th>注文日</th>
-                            <th><%= order.created_at %></th>
-                        </tr>
-                        <tr>
-                            <th>配送先</th>
-                            <th><%= order.postal_code %></th>
-                            <th><%= order.address %></th>
-                        </tr>
-                        <tr>
-                            <th>支払方法</th>
-                            <th><%= order.payment_method %></th>
-                        </tr>
-                        <tr>
-                            <th>ステータス</th>
-                            <th><%= order.status %></th>
-                        </tr>
-                    </thead>
-                       </table>
-            <% end%>
-                    <% cart_item_price = (cart_item.item.price*1.08*cart_item.amount).round %>
-                    <% cart_item_price %>
-                    <% sum = sum + cart_item_price %>
-             
+        <div class="col-xs-7">
+                 <table border="2">
+                 <h4>注文情報</h4>
+                    <tr>
+                        <th style="background-color:lightgray">注文日</th>
+                        <td><%= @order.created_at.strftime("%Y/%m/%d")%></td>
+                    </tr>
+                    <tr>
+                        <th style="background-color:lightgray">配送先</th>
+                        <td >
+                            <%= @order.postal_code %><br>
+                            <%= @order.address %><br>
+                            <%= @order.name %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="background-color:lightgray">支払方法</th>
+                        <td><%= @order.payment_method %></td>
+                    </tr>
+                    <tr>
+                        <th style="background-color:lightgray">ステータス</th>
+                        <td><%= @order.status %></td>
+                    </tr>
+            </table>
         </div>
-        <div class="col-xs-3">
-            <h3>請求情報</h3>
-                <table border="2">
-                    <tr>
-                        <td>商品合計</td>
-                        <td><%= sum.round %></td>
-                    </tr>
-                    <tr>
-                        <td>送料</td>
-                        <td>800</td>
-                    </tr>
-                    <tr>
-                        <td>請求金額</td>
-                        <td><%= (sum + 800).round %></td>
-                    </tr>
-                </table>
+        <div class="col-xs-5">
+            <h4>請求情報</h4>
+                    <table border="2">
+                            <tr>
+                                <th style="background-color:lightgray">商品合計</th>
+                                <td><%= @sum.to_s(:delimited) %></td>
+                            </tr>
+                            <tr>
+                                <th style="background-color:lightgray">送料</th>
+                                <td>800</td>
+                            </tr>
+                            <tr>
+                                <th style="background-color:lightgray">請求金額</th>
+                                <td><%= (@sum + 800).to_s(:delimited) %></td>
+                            </tr>
+                    </table>
         </div>
 </div>
-    <h2>注文内容</h2>
+    <h4>注文内容</h4>
        <table border="2">
-            <% sum = 0 %>
-            <% @cart_items.each do |cart_item|%>
+            <%# sum = 0 %>
+            <%# @cart_items.each do |cart_item|%>
                 <thead>
-                    <tr>
+                    <tr style="background-color:lightgray">
                     <th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th>
                     </tr>
                 </thead>
+                <% @order_details.each do |order_detail| %>
                 <tr>
-                    <td><%= cart_item.item.name %></td>
-                    <td><%= (cart_item.item.price*$tax).round %></td>
-                    <td><%= cart_item.amount %></td>
-                    <th><%= (cart_item.item.price*1.08).round*(cart_item.amount) %></th>
+                    <td><%= order_detail.item.name %></td>
+                    <td><%= (order_detail.item.price*$tax).round %></td>
+                    <td><%= order_detail.amount %></td>
+                    <th>
+                        <% one_item_sum = (order_detail.item.price*1.08).round*(order_detail.amount) %>
+                        <%= one_item_sum.to_s(:delimited) %>
+                    </th>
+
                 </tr>
             <% end%>
         </table>
+</div>

@@ -1,9 +1,9 @@
 class Customers::ItemsController < ApplicationController
 
     def index
-   @items = Item.all
+        @items = Item.all
+        @genres = Genre.all
     end
-
     def create
 
     end
@@ -17,6 +17,7 @@ class Customers::ItemsController < ApplicationController
     def show
         @item = Item.find(params[:id])
         @cart_item = CartItem.new
+        @genres = Genre.all
     end
     
     def upddate

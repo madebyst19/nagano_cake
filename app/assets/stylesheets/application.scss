@@ -10,24 +10,162 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ .clearfix:after {
+    content: "";
+    clear: both;
+    display: block;
+ }
+ .btn btn-primary{
+     float:right;
+ }
+ .field{
+     margin-top:20px;
+ }
 
-// header{
-//     background-color: red
-// }
-// h3{
-//     color: #83277b;
-// }
-// header{
-// 	color:white;
-// 	.navbar-left{
-// 		span{
-// 			font-size:20px;
-// 			padding-top:10px;
-// 		}
-// 	}
-// }
+ svg{
+     float:right;
+ }
+ .session_box{
+     margin-left:150px;
+ }
+ .genre_table{
+     border: 1px black solid;
+ }
+ .genre_tabel_title{
+     border-bottom: 1px black solid;
+ }
+ .recommend_item{
+     display: inline-block;
+     display: flex;
+     flex-wrap: wrap;
+ }
+ .recommend_item_each{
+     width:25%;
+ }
+ 
+ footer{
+    width: 100%;
+
+    text-align: center;
+    padding: 30px 0;
+    position: absolute;
+    bottom: 0; 
+ }
+ .wrapper{
+     min-height:100vh;
+     position: relative;
+     padding-bottom: 120px;
+     box-sizing: border-box;
+ }
+ .cart_item_index table{
+     width:100%;
+ }
+ .cart_item_index td{
+    padding:10px 10px;
+}
+.cart_items_bottom th{
+    width:30px;
+}
+.cart_items_bottom {
+    .col-xs-4{
+        float:right;
+        padding:10px 10px;
+    }
+}
+.button_delete {
+    float:right;
+}
+.payment_address_box{
+    h5{
+        padding-right:30px;
+    }
+}
+.left_box table{
+    width:100%;
+}
+.right_box table{
+    width:90%;
+}
+.payment_address_box{
+    margin-top:10px;
+}
+.thanks{
+    float:center;
+}
+.mypage table{
+    width:70%;
+    float:left;
+}
+.button-top{
+    
+    display: flex;
+   
+}
+.bottom-wrapper{
+    clear:both;
+    display: flex;
+    margin-top:15px;
+}
+.bottom-wrapper h4{
+    margin-right:20px ;
+  
+}.mypage th{
+    width:150px;
+}
+.address-wrapper{
+    .row{
+        margin-top:15px;
+    }
+}
+.address-index table{
+    width:100%;
+}
+.edit_address {
+    .row{
+        margin-top: 10px;
+    }
+
+}
+.items_small_index table{
+    width:100%;
+}
+.cart_items_bottom{
+    .col-xs-4 table{
+        margin-left:20px;
+        width:90%;
+        
+    }
+}
+.address-index{
+    margin-top:50px;
+    th{
+        padding:5px;
+    }
+    td{
+        padding:5px;
+    }
+    table{
+        width:100%;
+    }
+}
+h3{
+    background-color:gray;
+    margin-left:100px;
+    display:inline-block
+
+}
+.order_info {
+    .payment, .address{
+    margin-left:50px;
+    }
+}
+.order_show_view{
+    table{
+        width:90%;
+    }
+}
